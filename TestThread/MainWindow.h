@@ -27,6 +27,8 @@ private slots:
 
 	void on_pbStopFuture_clicked();
 
+    void on_pbStartT_clicked();
+
 private:
 	Ui::MainWindow *ui;
 

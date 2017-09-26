@@ -17,6 +17,7 @@ public slots:
 
 	void start(int count) override;
 	void stop() override;
+    void startT(int t) override;
 
 signals:
 

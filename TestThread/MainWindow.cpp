@@ -10,6 +10,14 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
+
+    if (!fWorkerProxy) {
+        fWorkerProxy = new WorkerProxy(this);
+        connect(fWorkerProxy, &WorkerProxy::initialized, [] { qDebug() << "INITIALIZED" ; });
+        connect(fWorkerProxy, &WorkerProxy::started, [] { qDebug() << "JOB STARTED" ; });
+        connect(fWorkerProxy, &WorkerProxy::jobProgress, [](int i) { qDebug() << "JOB PROGRESS" << i; });
+        connect(fWorkerProxy, &WorkerProxy::jobFinished, [] { qDebug() << "JOB FINISHED" ; });
+    }
 }
 
 MainWindow::~MainWindow()
@@ -20,13 +28,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_pbStart_clicked()
 {
 	DLOGPF;
-	if (!fWorkerProxy) {
-		fWorkerProxy = new WorkerProxy(this);
-		connect(fWorkerProxy, &WorkerProxy::initialized, [] { qDebug() << "INITIALIZED" ; });
-		connect(fWorkerProxy, &WorkerProxy::started, [] { qDebug() << "JOB STARTED" ; });
-		connect(fWorkerProxy, &WorkerProxy::jobProgress, [](int i) { qDebug() << "JOB PROGRESS" << i; });
-		connect(fWorkerProxy, &WorkerProxy::jobFinished, [] { qDebug() << "JOB FINISHED" ; });
-	}
 	fWorkerProxy->start(10);
 }
 
@@ -54,4 +55,10 @@ void MainWindow::on_pbStopFuture_clicked()
 {
 	if (!fW) return;
 	fW->cancel();
+}
+
+void MainWindow::on_pbStartT_clicked()
+{
+    DLOGPF;
+    fWorkerProxy->startT(qrand());
 }

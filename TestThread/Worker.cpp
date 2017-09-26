@@ -49,7 +49,12 @@ void Worker::start(int count)
 void Worker::stop()
 {
 	DLOGPF;
-	stopJob();
+    stopJob();
+}
+
+void Worker::startT(int t)
+{
+    DLOGPF << t;
 }
 
 void Worker::stopJob()

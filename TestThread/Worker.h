@@ -42,6 +42,8 @@ public slots:
 	// Остановить работу
 	virtual void stop();
 
+    virtual void startT(int t);
+
 private:
 
 	// Пример работы

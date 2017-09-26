@@ -1,4 +1,5 @@
 #include <QThread>
+#include <QTimer>
 #include "WorkerProxy.h"
 #include "Dlog.h"
 
@@ -43,6 +44,12 @@ void WorkerProxy::start(int count)
 void WorkerProxy::stop()
 {
 	DLOGPF;
-	emit p_stop();
+    emit p_stop();
+}
+
+void WorkerProxy::startT(int t)
+{
+    DLOGPF;
+    QTimer::singleShot(0, fWorker, [this,t](){ fWorker->startT(t); });
 }
 
