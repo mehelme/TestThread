@@ -2,7 +2,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "WorkerProxy.h"
-#include "Dlog.h"
+#include "DLogM.h"
 #include "runextensions.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -61,4 +61,18 @@ void MainWindow::on_pbStartT_clicked()
 {
     DLOGPF;
     fWorkerProxy->startT(qrand());
+}
+
+void MainWindow::on_pbDlog_clicked()
+{
+    DLOG("1");
+    DLOG("%1", 2);
+    DLOG("%1 %2", 3, 4);
+
+    DLOG_PF("PF1");
+    DLOG_PF("PF2 %1", 2);
+    DLOG_PF("PF3 %1 %2", 2, 3);
+
+    DLOGPF;
+    DLOGPFL;
 }

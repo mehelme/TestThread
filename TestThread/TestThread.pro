@@ -33,7 +33,7 @@ HEADERS += \
 	MainWindow.h \
 	WorkerProxy.h \
 	Worker.h \
-	Dlog.h
+    DLogM.h
 
 FORMS += \
 	MainWindow.ui
